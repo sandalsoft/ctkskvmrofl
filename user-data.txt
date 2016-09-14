@@ -14,7 +14,7 @@ default 0
 timeout 0
 title Kernel
  root (hd0,0)
- kernel /boot/vmlinuz ks=KS_URL
+ kernel /boot/vmlinuz ks="https://raw.githubusercontent.com/sandalsoft/ctkskvmrofl/master/counteract.ks.cfg"
  initrd /boot/initrd.img
 EOF
 
