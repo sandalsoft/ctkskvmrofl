@@ -1,0 +1,22 @@
+#!/bin/sh
+
+# Download kernel
+vmlinuz_url="http://ftp.linux.ncsu.edu/pub/centos/6/os/x86_64/images/pxeboot/vmlinuz"
+initrd_url="http://ftp.linux.ncsu.edu/pub/centos/6/os/x86_64/images/pxeboot/initrd.img"
+
+mkdir -p /boot/
+curl $vmlinuz_url > /boot/vmlinuz
+curl $initrd_url > /boot/initrd.img
+
+# Setup boot
+cat << EOF > /boot/grub/menu.lst
+default 0
+timeout 0
+title Kernel
+ root (hd0,0)
+ kernel /boot/vmlinuz ks=KS_URL
+ initrd /boot/initrd.img
+EOF
+
+# Restart
+reboot
